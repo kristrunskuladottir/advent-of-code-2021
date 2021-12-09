@@ -2,7 +2,7 @@ from typing import Dict, List, Set, Tuple
 from solution_1 import get_low_points
 
 
-def check_for_basin(basin: Set[Tuple[int, int]], height_map: List[List[int]], new_point: Tuple[int, int], low_point: Tuple[int, int]) -> bool:
+def check_for_basin(basin: Set[Tuple[int, int]], height_map: List[List[int]], new_point: Tuple[int, int]) -> Set[Tuple[int, int]]:
     x, y = new_point
     height = height_map[y][x]
 
@@ -14,28 +14,27 @@ def check_for_basin(basin: Set[Tuple[int, int]], height_map: List[List[int]], ne
     if check_left:
         if height_map[y][x - 1] < 9 and height_map[y][x - 1] > height:
             basin.add((x - 1, y))
-            check_for_basin(basin, height_map, (x - 1, y), low_point)
+            check_for_basin(basin, height_map, (x - 1, y))
     if check_right:
         if height_map[y][x + 1] < 9 and height_map[y][x + 1] > height:
             basin.add((x + 1, y))
-            check_for_basin(basin, height_map, (x + 1, y), low_point)
+            check_for_basin(basin, height_map, (x + 1, y))
     if check_down:
         if height_map[y + 1][x] < 9 and height_map[y + 1][x] > height:
             basin.add((x, y + 1))
-            check_for_basin(basin, height_map, (x, y + 1), low_point)
+            check_for_basin(basin, height_map, (x, y + 1))
     if check_up:
         if height_map[y - 1][x] < 9 and height_map[y - 1][x] > height:
             basin.add((x, y - 1))
-            check_for_basin(basin, height_map, (x, y - 1), low_point)
+            check_for_basin(basin, height_map, (x, y - 1))
 
     return basin
 
 
 def get_basins(height_map: List[List[int]]) -> List[int]:
     basins = {}
-    low_points = get_low_points(height_map)
-    for low_point, height in low_points.items():
-        basins[low_point] = check_for_basin({low_point}, height_map, low_point, low_point)
+    for low_point in get_low_points(height_map).keys():
+        basins[low_point] = check_for_basin({low_point}, height_map, low_point)
 
     return basins
 
