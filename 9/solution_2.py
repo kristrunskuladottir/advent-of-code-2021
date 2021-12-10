@@ -1,4 +1,4 @@
-from typing import Dict, List, Set, Tuple
+from typing import List, Set, Tuple
 from solution_1 import get_low_points
 
 
