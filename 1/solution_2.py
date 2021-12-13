@@ -1,6 +1,4 @@
-import sys
 from typing import List
-from collections import defaultdict
 
 from solution_1 import get_increased
 

@@ -52,5 +52,6 @@ def main():
     life_support_rating = oxygen_rating_as_integer * co2_rating_as_integer
     print('life_support_rating', life_support_rating)
 
+
 if __name__ == '__main__':
     main()

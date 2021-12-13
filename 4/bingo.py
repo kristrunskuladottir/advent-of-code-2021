@@ -14,7 +14,6 @@ class BingoBoard():
     winning_board: bool = False
     winning_number: Optional[int] = None
 
-
     @classmethod
     def create_bingo_board_from_input(cls, input_board: List[List[int]]) -> 'BingoBoard':
         rows = []
