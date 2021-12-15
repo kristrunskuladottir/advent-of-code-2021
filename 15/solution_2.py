@@ -39,10 +39,7 @@ def main() -> None:
             line = list(line.rstrip())
             risk_levels.append([int(risk) for risk in line])
 
-    risk_levels = multiply_map(5, risk_levels)
-    with open('multiplied.json', 'w+') as f:
-        f.write(str(risk_levels))
-    risk_levels = RiskLevels.create(risk_levels)
+    risk_levels = RiskLevels.create(multiply_map(5, risk_levels))
     shortest_way_cost = dijkstra(risk_levels)
     print('total risk', shortest_way_cost)
 
